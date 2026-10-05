@@ -101,7 +101,7 @@ parameters:
     human_description:
       en_US: "Optional JSON configuration for resources that need it. Examples: postgres: {\"region\": \"aws-us-east-1\"}, vector-database: {\"dimensions\": 1536}, social-login: {\"callback_urls\": [\"https://example.com/callback\"]}."
       zh_Hans: 可选的 JSON 配置。
-    llm_description: "Optional JSON string with resource-specific configuration. Only needed for certain resources. postgres accepts {\"region\": \"aws-us-east-1\"}. vector-database requires {\"dimensions\": 1536}. social-login requires {\"callback_urls\": [...]}. inbox accepts {\"webhook_url\": \"...\"}. realtime accepts {\"write_region\": \"wnam\"}. Other resources need no configuration."
+    llm_description: "Optional JSON string with resource-specific configuration. Only needed for certain resources. postgres accepts {\"region\": \"aws-us-east-1\"}. vector-database requires {\"dimensions\": 1536, \"metric\": \"cosine\"} (dimensions is required). social-login requires {\"callback_urls\": [...]}. inbox accepts {\"webhook_url\": \"...\"}. realtime accepts {\"write_region\": \"wnam\"}. Other resources need no configuration."
     form: llm
   - name: confirmed
     type: boolean
