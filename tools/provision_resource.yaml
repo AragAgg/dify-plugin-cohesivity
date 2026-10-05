@@ -1,0 +1,119 @@
+identity:
+  name: provision_resource
+  author: Arag Agrawal
+  label:
+    en_US: Provision Resource
+    zh_Hans: 配置资源
+description:
+  human:
+    en_US: Provision a backend resource on a Cohesivity tenant. Supports databases, storage, hosting, APIs, and more. Requires tenant_id and management key from create_tenant.
+    zh_Hans: 在 Cohesivity 租户上配置后端资源。支持数据库、存储、托管、API 等。需要 create_tenant 返回的 tenant_id 和管理密钥。
+  llm: Provision a backend resource on an existing Cohesivity tenant. Call create_tenant first to get the tenant_id and coh_management_key. Available resources include postgres, redis, object-storage, vector-database, openai-api, ai-gateway, railway-hosting, cloudflare-workers, and more. Some resources accept optional configuration (e.g. postgres accepts a region, vector-database requires dimensions).
+parameters:
+  - name: tenant_id
+    type: string
+    required: true
+    label:
+      en_US: Tenant ID
+      zh_Hans: 租户 ID
+    human_description:
+      en_US: The tenant ID returned by create_tenant.
+      zh_Hans: create_tenant 返回的租户 ID。
+    llm_description: The tenant_id returned by create_tenant.
+    form: llm
+  - name: coh_management_key
+    type: string
+    required: true
+    label:
+      en_US: Management Key
+      zh_Hans: 管理密钥
+    human_description:
+      en_US: The management key returned by create_tenant. Starts with coh_man_.
+      zh_Hans: create_tenant 返回的管理密钥。以 coh_man_ 开头。
+    llm_description: The coh_management_key returned by create_tenant. Starts with coh_man_.
+    form: llm
+  - name: resource
+    type: select
+    required: true
+    label:
+      en_US: Resource
+      zh_Hans: 资源
+    human_description:
+      en_US: The resource to provision.
+      zh_Hans: 要配置的资源。
+    llm_description: The resource to provision. Choose based on what the application needs.
+    form: llm
+    options:
+      - value: postgres
+        label:
+          en_US: PostgreSQL Database
+      - value: redis
+        label:
+          en_US: Redis Cache
+      - value: object-storage
+        label:
+          en_US: Object Storage
+      - value: vector-database
+        label:
+          en_US: Vector Database
+      - value: openai-api
+        label:
+          en_US: OpenAI API
+      - value: ai-gateway
+        label:
+          en_US: AI Gateway
+      - value: deepgram-api
+        label:
+          en_US: Deepgram API
+      - value: exa-api
+        label:
+          en_US: Exa Search API
+      - value: railway-hosting
+        label:
+          en_US: Railway Hosting
+      - value: cloudflare-workers
+        label:
+          en_US: Cloudflare Workers
+      - value: inbox
+        label:
+          en_US: Email Inbox
+      - value: realtime
+        label:
+          en_US: Realtime (WebSocket)
+      - value: social-login
+        label:
+          en_US: Social Login (OAuth)
+      - value: steel-browser
+        label:
+          en_US: Browser Instance
+      - value: openweather-api
+        label:
+          en_US: OpenWeather API
+      - value: google-geocoding-api
+        label:
+          en_US: Google Geocoding API
+  - name: configuration
+    type: string
+    required: false
+    label:
+      en_US: Configuration (JSON)
+      zh_Hans: 配置 (JSON)
+    human_description:
+      en_US: "Optional JSON configuration for resources that need it. Examples: postgres: {\"region\": \"aws-us-east-1\"}, vector-database: {\"dimensions\": 1536}, social-login: {\"callback_urls\": [\"https://example.com/callback\"]}."
+      zh_Hans: 可选的 JSON 配置。
+    llm_description: "Optional JSON string with resource-specific configuration. Only needed for certain resources. postgres accepts {\"region\": \"aws-us-east-1\"}. vector-database requires {\"dimensions\": 1536}. social-login requires {\"callback_urls\": [...]}. inbox accepts {\"webhook_url\": \"...\"}. realtime accepts {\"write_region\": \"wnam\"}. Other resources need no configuration."
+    form: llm
+  - name: confirmed
+    type: boolean
+    required: true
+    label:
+      en_US: Confirmed
+      zh_Hans: 已确认
+    human_description:
+      en_US: Must be true. Confirms the user has authorized resource provisioning.
+      zh_Hans: 必须为 true。确认用户已授权资源配置。
+    llm_description: Set to true to confirm provisioning. The user should know which resource is being provisioned.
+    form: llm
+extra:
+  python:
+    source: tools/provision_resource.py

@@ -1,0 +1,48 @@
+identity:
+  name: claim_tenant
+  author: Arag Agrawal
+  label:
+    en_US: Claim Tenant
+    zh_Hans: 认领租户
+description:
+  human:
+    en_US: Generate an approval URL for a human to claim an ephemeral Cohesivity tenant. Once claimed, the tenant becomes permanent with no expiry.
+    zh_Hans: 生成一个审批 URL，供人类认领临时 Cohesivity 租户。认领后，租户将变为永久租户，不再过期。
+  llm: Generate an approval URL so the user can claim their ephemeral Cohesivity tenant. The tenant was created with a 72-hour window. Present the returned approval_url to the user so they can click it to claim ownership. Once claimed, the tenant becomes permanent.
+parameters:
+  - name: tenant_id
+    type: string
+    required: true
+    label:
+      en_US: Tenant ID
+      zh_Hans: 租户 ID
+    human_description:
+      en_US: The tenant ID returned by create_tenant.
+      zh_Hans: create_tenant 返回的租户 ID。
+    llm_description: The tenant_id returned by create_tenant.
+    form: llm
+  - name: coh_management_key
+    type: string
+    required: true
+    label:
+      en_US: Management Key
+      zh_Hans: 管理密钥
+    human_description:
+      en_US: The management key returned by create_tenant. Starts with coh_man_.
+      zh_Hans: create_tenant 返回的管理密钥。以 coh_man_ 开头。
+    llm_description: The coh_management_key returned by create_tenant. Starts with coh_man_.
+    form: llm
+  - name: confirmed
+    type: boolean
+    required: true
+    label:
+      en_US: Confirmed
+      zh_Hans: 已确认
+    human_description:
+      en_US: Must be true. Confirms the user wants to claim this tenant.
+      zh_Hans: 必须为 true。确认用户想要认领此租户。
+    llm_description: Set to true to confirm the user wants to claim the tenant.
+    form: llm
+extra:
+  python:
+    source: tools/claim_tenant.py

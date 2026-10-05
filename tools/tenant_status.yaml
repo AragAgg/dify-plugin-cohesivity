@@ -1,0 +1,37 @@
+identity:
+  name: tenant_status
+  author: Arag Agrawal
+  label:
+    en_US: Tenant Status
+    zh_Hans: 租户状态
+description:
+  human:
+    en_US: Check the status of a Cohesivity tenant including lifecycle, provisioned resources, limits, and notifications.
+    zh_Hans: 检查 Cohesivity 租户的状态，包括生命周期、已配置的资源、限制和通知。
+  llm: Check the current status of a Cohesivity tenant. Returns lifecycle state, provisioned resources and their connection details, usage limits, and any notifications. Use this after provisioning to get connection strings, or to check if a tenant is still active.
+parameters:
+  - name: tenant_id
+    type: string
+    required: true
+    label:
+      en_US: Tenant ID
+      zh_Hans: 租户 ID
+    human_description:
+      en_US: The tenant ID returned by create_tenant.
+      zh_Hans: create_tenant 返回的租户 ID。
+    llm_description: The tenant_id returned by create_tenant.
+    form: llm
+  - name: coh_management_key
+    type: string
+    required: true
+    label:
+      en_US: Management Key
+      zh_Hans: 管理密钥
+    human_description:
+      en_US: The management key returned by create_tenant. Starts with coh_man_.
+      zh_Hans: create_tenant 返回的管理密钥。以 coh_man_ 开头。
+    llm_description: The coh_management_key returned by create_tenant. Starts with coh_man_.
+    form: llm
+extra:
+  python:
+    source: tools/tenant_status.py

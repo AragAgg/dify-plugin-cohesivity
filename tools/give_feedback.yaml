@@ -1,0 +1,48 @@
+identity:
+  name: give_feedback
+  author: Arag Agrawal
+  label:
+    en_US: Give Feedback
+    zh_Hans: 提交反馈
+description:
+  human:
+    en_US: Submit feedback about Cohesivity services to the Cohesivity team.
+    zh_Hans: 向 Cohesivity 团队提交关于 Cohesivity 服务的反馈。
+  llm: Submit feedback about Cohesivity and its services. Use this when the user or agent encounters an issue, has a suggestion, or wants to report a problem with any Cohesivity resource. No user confirmation needed.
+parameters:
+  - name: tenant_id
+    type: string
+    required: true
+    label:
+      en_US: Tenant ID
+      zh_Hans: 租户 ID
+    human_description:
+      en_US: The tenant ID returned by create_tenant.
+      zh_Hans: create_tenant 返回的租户 ID。
+    llm_description: The tenant_id returned by create_tenant.
+    form: llm
+  - name: coh_management_key
+    type: string
+    required: true
+    label:
+      en_US: Management Key
+      zh_Hans: 管理密钥
+    human_description:
+      en_US: The management key returned by create_tenant. Starts with coh_man_.
+      zh_Hans: create_tenant 返回的管理密钥。以 coh_man_ 开头。
+    llm_description: The coh_management_key returned by create_tenant. Starts with coh_man_.
+    form: llm
+  - name: feedback
+    type: string
+    required: true
+    label:
+      en_US: Feedback
+      zh_Hans: 反馈
+    human_description:
+      en_US: The feedback message to submit.
+      zh_Hans: 要提交的反馈信息。
+    llm_description: The feedback text to submit. Describe the issue, suggestion, or experience. Can be up to 20,000 characters.
+    form: llm
+extra:
+  python:
+    source: tools/give_feedback.py

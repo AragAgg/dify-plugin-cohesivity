@@ -1,0 +1,10 @@
+[project]
+name = "cohesivity"
+version = "0.0.1"
+description = "Managed backend infrastructure for AI agents"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dify_plugin>=0.10.2",
+    "requests>=2.32.0",
+]

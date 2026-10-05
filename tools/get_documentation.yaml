@@ -1,0 +1,59 @@
+identity:
+  name: get_documentation
+  author: Arag Agrawal
+  label:
+    en_US: Get Documentation
+    zh_Hans: 获取文档
+description:
+  human:
+    en_US: Fetch Cohesivity documentation including overview, reference guides, onboarding, pricing, and resource offerings. No authentication required.
+    zh_Hans: 获取 Cohesivity 文档，包括概览、参考指南、入门指南、定价和资源产品列表。无需身份验证。
+  llm: Fetch Cohesivity documentation. Use this to learn about available backend resources, pricing, onboarding steps, or API reference before creating a tenant or provisioning resources.
+parameters:
+  - name: document
+    type: select
+    required: true
+    label:
+      en_US: Document
+      zh_Hans: 文档
+    human_description:
+      en_US: Which document to retrieve.
+      zh_Hans: 要检索的文档。
+    llm_description: The document to fetch. Use "docs" for an overview, "offerings" for the full resource catalog, "offering" for a single resource's details, "onboarding" for getting started, "pricing" for costs, "quick-reference" or "full-reference" for API reference.
+    form: llm
+    options:
+      - value: docs
+        label:
+          en_US: Overview
+      - value: quick-reference
+        label:
+          en_US: Quick Reference
+      - value: full-reference
+        label:
+          en_US: Full Reference
+      - value: onboarding
+        label:
+          en_US: Onboarding
+      - value: pricing
+        label:
+          en_US: Pricing
+      - value: offerings
+        label:
+          en_US: All Offerings
+      - value: offering
+        label:
+          en_US: Single Offering
+  - name: offering
+    type: string
+    required: false
+    label:
+      en_US: Offering Name
+      zh_Hans: 产品名称
+    human_description:
+      en_US: Required when document is "offering". The resource slug, e.g. "postgres", "redis", "object-storage".
+      zh_Hans: 当文档为"offering"时必填。资源标识，例如"postgres"、"redis"、"object-storage"。
+    llm_description: The specific offering slug to look up. Required only when document is "offering". Examples are postgres, redis, object-storage, openai-api, railway-hosting, vector-database.
+    form: llm
+extra:
+  python:
+    source: tools/get_documentation.py

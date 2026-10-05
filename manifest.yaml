@@ -1,0 +1,40 @@
+version: 0.0.1
+type: plugin
+author: cohesivity
+name: cohesivity
+label:
+  en_US: Cohesivity
+description:
+  en_US: Managed backend infrastructure for AI agents. Provision databases, storage, hosting, and APIs — no account or API keys required to start.
+  zh_Hans: AI 代理的托管后端基础设施。配置数据库、存储、托管和 API，无需账户或 API 密钥即可开始。
+icon: icon.svg
+created_at: "2026-10-05T00:00:00.000000000Z"
+contact: arag@cohesivity.ai
+repo: https://github.com/AragAgg/dify-plugin-cohesivity
+resource:
+  memory: 1048576
+  permission:
+    tool:
+      enabled: true
+    model:
+      enabled: false
+      llm: false
+  network:
+    domains:
+      - cohesivity.ai
+plugins:
+  tools:
+    - provider/cohesivity.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: 1.0.0
+tags:
+  - utilities
+privacy: PRIVACY.md

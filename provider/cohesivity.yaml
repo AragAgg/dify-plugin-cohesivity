@@ -1,0 +1,22 @@
+identity:
+  author: Arag Agrawal
+  name: cohesivity
+  label:
+    en_US: Cohesivity
+    zh_Hans: Cohesivity
+  description:
+    en_US: Managed backend infrastructure for AI agents
+    zh_Hans: AI 代理的托管后端基础设施
+  icon: icon.svg
+  tags:
+    - utilities
+tools:
+  - tools/get_documentation.yaml
+  - tools/create_tenant.yaml
+  - tools/provision_resource.yaml
+  - tools/tenant_status.yaml
+  - tools/claim_tenant.yaml
+  - tools/give_feedback.yaml
+extra:
+  python:
+    source: provider/cohesivity.py

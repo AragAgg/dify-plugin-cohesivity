@@ -1,0 +1,26 @@
+identity:
+  name: create_tenant
+  author: Arag Agrawal
+  label:
+    en_US: Create Tenant
+    zh_Hans: 创建租户
+description:
+  human:
+    en_US: Create an ephemeral Cohesivity tenant with a 72-hour claim window. No account or API keys required. Returns a tenant ID, management key, and application key for provisioning resources.
+    zh_Hans: 创建一个具有 72 小时认领窗口的临时 Cohesivity 租户。无需账户或 API 密钥。返回租户 ID、管理密钥和应用密钥，用于配置资源。
+  llm: Create a new ephemeral Cohesivity tenant. This is the first step before provisioning any backend resources. The tenant lasts 72 hours and can be claimed by a human later. Returns tenant_id and coh_management_key needed for all subsequent operations.
+parameters:
+  - name: confirmed
+    type: boolean
+    required: true
+    label:
+      en_US: Confirmed
+      zh_Hans: 已确认
+    human_description:
+      en_US: Must be true. Confirms the user has authorized tenant creation.
+      zh_Hans: 必须为 true。确认用户已授权创建租户。
+    llm_description: Set to true to confirm tenant creation. Each call with confirmed=true creates a new tenant. Do not call multiple times unless the user wants multiple tenants.
+    form: llm
+extra:
+  python:
+    source: tools/create_tenant.py
