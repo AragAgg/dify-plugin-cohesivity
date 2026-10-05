@@ -66,7 +66,10 @@ class ProvisionResourceTool(Tool):
             resp = requests.post(
                 MCP_URL,
                 json=payload,
-                headers={"Content-Type": "application/json"},
+                headers={
+                    "Content-Type": "application/json",
+                    "User-Agent": "cohesivity-dify-plugin/0.0.1",
+                },
                 timeout=60,
             )
             resp.raise_for_status()
