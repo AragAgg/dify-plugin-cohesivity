@@ -8,7 +8,7 @@ description:
   human:
     en_US: Submit feedback about Cohesivity services to the Cohesivity team.
     zh_Hans: 向 Cohesivity 团队提交关于 Cohesivity 服务的反馈。
-  llm: Submit feedback about Cohesivity and its services. Use this when the user or agent encounters an issue, has a suggestion, or wants to report a problem with any Cohesivity resource. No user confirmation needed.
+  llm: Submit feedback about Cohesivity. Use this when the user or agent hits an issue or has a suggestion about any Cohesivity resource.
 parameters:
   - name: tenant_id
     type: string

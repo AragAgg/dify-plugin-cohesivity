@@ -2,7 +2,7 @@
 
 ## Data Collection
 
-This plugin connects to the Cohesivity API at `https://cohesivity.ai`. It sends requests to create and manage ephemeral backend tenants on your behalf.
+This plugin connects to the Cohesivity API at `https://cohesivity.ai`. It sends requests to create and manage ephemeral backend tenants.
 
 ## What Data Is Sent
 
